@@ -1,0 +1,67 @@
+<div class="container d-flex justify-content-center align-items-center mt-4">
+  <div class="card w-75">
+    <div class="card-header">
+      My Profile
+    </div>
+    <div class="card-body" *ngIf="usersService.currentUser | async; else loading; let user">
+      <h5 class="card-title">{{user.first_name}} {{user.last_name}} ({{user.cid}})</h5>
+      <h6 class="card-subtitle mb-2" [style.color]="'#' + (user.group.colour !== '' && user.group.colour !== null ? user.group.colour : '007bff')">{{user.group.name}}</h6>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">Email</h6> {{user.email}}</li>
+        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">ATC Rating</h6> {{user.atc_rating}}</li>
+        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">Pilot Rating</h6> {{user.pilot_rating}}</li>
+        <li class="list-group-item"><h5 class="mt-4 mb-0">Permissions</h5>
+
+          <div class="mt-2">
+            <br/>
+
+            <div class="form-group form-inline justify-content-between px-3">
+              <div>
+                Search Permissions: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="usersService.searchTerm"/>
+                <div class="spinner-border ml-4" role="status" *ngIf="usersService.loading$ | async">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th scope="col" sortable="id" class="selectable" (sort)="onSort($event)">ID</th>
+                <th scope="col" sortable="name" class="selectable" (sort)="onSort($event)">Name</th>
+                <th scope="col" sortable="description" class="selectable" (sort)="onSort($event)">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="selectable" *ngFor="let perm of perms$ | async">
+                <td><ngb-highlight [result]="perm.id.toString()" [term]="usersService.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="perm.name" [term]="usersService.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="perm.description" [term]="usersService.searchTerm"></ngb-highlight></td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between p-2">
+              <ngb-pagination
+                [collectionSize]="total$ | async" [(page)]="usersService.page" [pageSize]="usersService.pageSize">
+              </ngb-pagination>
+
+              <select class="custom-select w-auto" name="pageSize" [(ngModel)]="usersService.pageSize">
+                <option [ngValue]="5">5 Perms per Page</option>
+                <option [ngValue]="10">10 Perms per Page</option>
+                <option [ngValue]="15">15 Perms per Page</option>
+              </select>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loading>
+      <div class="row justify-content-center my-4">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

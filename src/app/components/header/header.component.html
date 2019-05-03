@@ -1,3 +1,23 @@
-<p>
-  header works!
-</p>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">{{ appTitle }}</a>
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" [attr.aria-expanded]="navToggled" aria-label="Toggle navigation" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarSupportedContent" [ngbCollapse]="!navToggled" [@collapse]="isNavbarCollapsedAnim">
+    <ul class="navbar-nav flex-sm-column flex-md-row ml-auto mt-sm-3 mt-md-0 text-center">
+<!--      <li *ngIf="userService.isStaff()" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>-->
+<!--      </li>-->
+<!--      <li *ngIf="userService.hasEventAccess()" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>-->
+<!--      </li>-->
+<!--      <li *ngIf="userService.hasUserAccess()" class="nav-item">-->
+<!--        <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>-->
+<!--      </li>-->
+      <li class="nav-item">
+        <button *ngIf="!userService.loggedIn()" class="btn btn-link nav-link w-100" (click)="userService.login()">Log In</button>
+        <button *ngIf="userService.loggedIn()" class="btn btn-link nav-link text-danger w-100" (click)="userService.logout()">Log Out</button>
+      </li>
+    </ul>
+  </div>
+</nav>

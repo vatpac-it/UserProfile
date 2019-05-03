@@ -5,13 +5,19 @@
       true,
       "attribute",
       "app",
-      "camelCase"
+      "camelCase",
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ],
     "component-selector": [
       true,
       "element",
       "app",
-      "kebab-case"
+      "kebab-case",
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ]
   }
 }

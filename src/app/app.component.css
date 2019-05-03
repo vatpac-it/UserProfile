@@ -1,0 +1,10 @@
+.page {
+  height: 100%;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page .body {
+  margin-bottom: 170px;
+}
