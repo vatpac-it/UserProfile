@@ -1,6 +1,5 @@
 .page {
-  height: 100%;
-  min-height: 300px;
+  min-height: 100%;
   position: relative;
   overflow: hidden;
 }

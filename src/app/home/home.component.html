@@ -1,16 +1,16 @@
 <div class="container d-flex justify-content-center align-items-center mt-4">
-  <div class="card w-75">
+  <div class="card w-100 mx-lg-4">
     <div class="card-header">
       My Profile
     </div>
-    <div class="card-body" *ngIf="usersService.currentUser | async; else loading; let user">
+    <div class="card-body px-2 px-sm-3" *ngIf="usersService.currentUser | async; else loading; let user">
       <h5 class="card-title">{{user.first_name}} {{user.last_name}} ({{user.cid}})</h5>
-      <h6 class="card-subtitle mb-2" [style.color]="'#' + (user.group.colour !== '' && user.group.colour !== null ? user.group.colour : '007bff')">{{user.group.name}}</h6>
+      <h6 class="card-subtitle mb-3 ml-2" [style.color]="'#' + (user.group.colour !== '' && user.group.colour !== null ? user.group.colour : '007bff')">{{user.group.name}}</h6>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">Email</h6> {{user.email}}</li>
-        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">ATC Rating</h6> {{user.atc_rating}}</li>
-        <li class="list-group-item d-flex justify-content-between"><h6 class="m-0">Pilot Rating</h6> {{user.pilot_rating}}</li>
-        <li class="list-group-item"><h5 class="mt-4 mb-0">Permissions</h5>
+        <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">Email</h6> {{user.email}}</li>
+        <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">ATC Rating</h6> {{user.atc_rating}}</li>
+        <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">Pilot Rating</h6> {{user.pilot_rating}}</li>
+        <li class="list-group-item px-1 px-sm-4-"><h5 class="mt-4 mb-0">Permissions</h5>
 
           <div class="mt-2">
             <br/>
@@ -41,12 +41,12 @@
               </tbody>
             </table>
 
-            <div class="d-flex justify-content-between p-2">
-              <ngb-pagination
+            <div class="d-flex justify-content-center justify-content-sm-between flex-wrap p-2">
+              <ngb-pagination class="m-2"
                 [collectionSize]="total$ | async" [(page)]="usersService.page" [pageSize]="usersService.pageSize">
               </ngb-pagination>
 
-              <select class="custom-select w-auto" name="pageSize" [(ngModel)]="usersService.pageSize">
+              <select class="custom-select m-2 w-auto" name="pageSize" [(ngModel)]="usersService.pageSize">
                 <option [ngValue]="5">5 Perms per Page</option>
                 <option [ngValue]="10">10 Perms per Page</option>
                 <option [ngValue]="15">15 Perms per Page</option>
