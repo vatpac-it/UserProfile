@@ -9,7 +9,7 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">Email</h6> {{user.email}}</li>
         <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">ATC Rating</h6> {{user.atc_rating}}</li>
-        <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">Pilot Rating</h6> {{user.pilot_rating}}</li>
+        <li class="list-group-item d-flex justify-content-between px-2 px-sm-4"><h6 class="m-0">Pilot Rating</h6> {{isArray(user.pilot_rating) ? user.pilot_rating.join(' - ') : user.pilot_rating}}</li>
         <li class="list-group-item px-1 px-sm-4-"><h5 class="mt-4 mb-0">Permissions</h5>
 
           <div class="mt-2">

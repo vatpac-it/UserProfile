@@ -12,6 +12,8 @@ import {Perm} from '../models/Perm';
 })
 export class HomeComponent implements OnInit {
 
+  isArray = Array.isArray;
+
   perms$: Observable<Perm[]>;
   total$: Observable<number>;
 
